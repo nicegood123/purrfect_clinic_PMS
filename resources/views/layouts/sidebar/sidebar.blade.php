@@ -3,9 +3,9 @@
 
       {{-- Brand Logo --}}
       <a href="/" class="brand-link">
-          <img src="{{ asset('assets/dist/img/avatar5.png') }}" alt="School Logo"
-              class="brand-image img-circle elevation-3" style="opacity: .8">
-          <span class="brand-text font-weight-light">Admin | <b>LTE</b></span>
+          <img src="{{ asset('assets/dist/img/CompanyLogo.png') }}" alt="Purrfect Clinic Logo"
+              class="brand-image img-circle">
+          <span class="brand-text font-weight-light">Purrfect Clinic | <b class="text-teal">PMS</b></span>
       </a>
 
       {{-- Sidebar --}}
@@ -16,21 +16,21 @@
               <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                   data-accordion="false">
                   <li class="nav-item">
-                      <a href="/" class="nav-link active">
+                      <a href="/" class="nav-link {{ request()->is('/') ? 'active' : '' }}">
                           <i class="fas fa-home nav-icon"></i>
                           <p>Home</p>
                       </a>
                   </li>
 
                   <li class="nav-item">
-                      <a href="{{ route('pets.index') }}" class="nav-link">
+                      <a href="{{ route('pets.index') }}" class="nav-link {{ request()->is('pets') ? 'active' : '' }}">
                           <i class="fas fa-dog nav-icon"></i>
                           <p>Pets</p>
                       </a>
                   </li>
 
                   <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{{ route('owners.index') }}" class="nav-link {{ request()->is('owners') ? 'active' : '' }}">
                         <i class="fas fa-user-friends nav-icon"></i>
                         <p>Owners</p>
                     </a>

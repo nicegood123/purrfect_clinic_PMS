@@ -24,3 +24,9 @@ Route::group(['prefix' => 'pets'], function () {
     // Route::post('update/{id}', 'FeedbackSourcesController@update');
     // Route::get('delete/{id}', 'FeedbackSourcesController@delete');
 });
+
+
+// Owners Routes
+Route::group(['prefix' => 'owners'], function () {
+    Route::get('/', 'OwnerController@index')->name('owners.index');
+});
