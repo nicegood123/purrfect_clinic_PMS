@@ -10,10 +10,8 @@
 
 
         <li class="nav-item dropdown user-menu">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                <img src="{{ asset('assets/dist/img/avatar5.png') }}" class="user-image img-circle elevation-2"
-                    alt="User Image">
-                <span class="d-none d-md-inline">Alexander Pierce</span>
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                Gisan Geff Raniego
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
 

@@ -5,7 +5,7 @@
 <meta name="author" content="Somerset Elcid R. Siang">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<title>Infinit | UM AAPMS</title>
+<title>Purrfect Clinic, Inc. | PMS</title>
 <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 
 <!-- Google Font: Source Sans Pro -->

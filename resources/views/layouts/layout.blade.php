@@ -12,7 +12,9 @@
         <div class="content-wrapper">
             @yield('content')
         </div>
-        @include('layouts.footer.footer')
+        @if (!request()->is('/'))
+            @include('layouts.footer.footer')
+        @endif
     </div>
 
     @yield('modals')
