@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 
 // Main Route
 Route::get('/', 'MainController@index');
+
