@@ -23,7 +23,7 @@
                   </li>
 
                   <li class="nav-item">
-                      <a href="" class="nav-link">
+                      <a href="{{ route('pets.index') }}" class="nav-link">
                           <i class="fas fa-dog nav-icon"></i>
                           <p>Pets</p>
                       </a>

@@ -17,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 // Main Route
 Route::get('/', 'MainController@index');
 
+// Pets Routes
+Route::group(['prefix' => 'pets'], function () {
+    Route::get('/', 'PetController@index')->name('pets.index');
+    // Route::post('save', 'FeedbackSourcesController@save');
+    // Route::post('update/{id}', 'FeedbackSourcesController@update');
+    // Route::get('delete/{id}', 'FeedbackSourcesController@delete');
+});
