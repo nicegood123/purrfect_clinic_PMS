@@ -2,21 +2,21 @@
 <html lang="{{ app()->getLocale() }}">
 
 <head>
-    @include('layouts.partials.head')
+    @include('layouts.header.head')
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
     <div class="wrapper">
-        @include('layouts.partials.navbar')
-        @include('layouts.partials.sidebar')
+        @include('layouts.navbar.navbar')
+        @include('layouts.sidebar.sidebar')
         <div class="content-wrapper">
             @yield('content')
         </div>
-        @include('layouts.partials.footer')
+        @include('layouts.footer.footer')
     </div>
 
     @yield('modals')
-    @include('layouts.partials.script')
+    @include('layouts.scripts.script')
     @yield('scripts')
 </body>
 

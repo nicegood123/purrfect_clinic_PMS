@@ -1,5 +1,4 @@
-{{-- <nav class="main-header navbar navbar-expand navbar-white"> --}}
-    <nav class="main-header navbar navbar-expand navbar-indigo navbar-dark border-bottom-0">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light border-bottom-0">
 
         {{-- Left navbar links --}}
         <ul class="navbar-nav">
@@ -10,8 +9,8 @@
                 <a href="#" class="nav-link"></a>
             </li>
         </ul>
-    
-    
+
+
         {{-- Right navbar links --}}
         <ul class="navbar-nav ml-auto">
             <!-- Notifications Dropdown Menu -->
@@ -41,30 +40,45 @@
                     <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                 </div>
             </li>
-    
+
             <!-- User Menu -->
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
-                    {{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}
+            <li class="nav-item dropdown user-menu show">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                    <img src="{{ asset('assets/dist/img/avatar5.png') }}" class="user-image img-circle elevation-2"
+                        alt="User Image">
+                    <span class="d-none d-md-inline">Alexander Pierce</span>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a href="{{ action('ProfileController@profile') }}" class="dropdown-item">
-                        <i class="fas fa-user mr-2"></i> Profile
-                    </a>
-                    <a href="{{ action('ProfileController@changePasswordForm') }}" class="dropdown-item">
-                        <i class="fas fa-key mr-2"></i> Change Password
-                    </a>
-                    <a href="{{ route('logout') }}" class="dropdown-item"
-                        onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                        <i class="fas fa-sign-out-alt mr-2"></i> Logout
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </div>
+                <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right show" style="left: inherit; right: 0px;">
+
+                    <li class="user-header bg-primary">
+                        <img src="{{ asset('assets/dist/img/avatar5.png') }}" class="img-circle elevation-2" alt="User Image">
+                        <p>
+                            Alexander Pierce - Web Developer
+                            <small>Member since Nov. 2012</small>
+                        </p>
+                    </li>
+
+                    <li class="user-body">
+                        <div class="row">
+                            <div class="col-4 text-center">
+                                <a href="#">Followers</a>
+                            </div>
+                            <div class="col-4 text-center">
+                                <a href="#">Sales</a>
+                            </div>
+                            <div class="col-4 text-center">
+                                <a href="#">Friends</a>
+                            </div>
+                        </div>
+
+                    </li>
+
+                    <li class="user-footer">
+                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                        <a href="#" class="btn btn-default btn-flat float-right">Sign out</a>
+                    </li>
+                </ul>
             </li>
-    
+
         </ul>
     </nav>
-    
