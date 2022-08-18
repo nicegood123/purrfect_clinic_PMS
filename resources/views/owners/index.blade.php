@@ -20,7 +20,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 mb-3">
-                    <a href="#button1" class="btn btn-dark d-block d-md-inline-block" data-toggle="modal" data-target="#add">
+                    <a href="#button1" class="btn btn-dark float-right" data-toggle="modal" data-target="#add">
                         <span class="fa fa-plus"></span> Create New
                     </a>
                 </div>
@@ -30,9 +30,11 @@
                             <table id="feedback_sources" style="width:100%" class="table table-hover table-sm">
                                 <thead>
                                     <tr>
+                                        <th>ID</th>
                                         <th>Name</th>
-                                        <th class="text-center">Date Created</th>
-                                        <th class="text-center">Date Updated</th>
+                                        <th>Mobile Number</th>
+                                        <th>Email</th>
+                                        <th>Email</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
