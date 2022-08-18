@@ -20,14 +20,14 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 mb-3">
-                    <a href="#button1" class="btn btn-dark float-right" data-toggle="modal" data-target="#add">
+                    <a class="btn btn-dark float-right" data-toggle="modal" data-target="#add">
                         <span class="fa fa-plus"></span> Create New
                     </a>
                 </div>
                 <div class="col-12">
                     <div class="card card-outline card-dark">
                         <div class="card-body">
-                            <table id="feedback_sources" style="width:100%" class="table table-hover table-sm">
+                            <table id="owners" style="width:100%" class="table table-hover table-sm">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -72,4 +72,23 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('modals')
+    @include('owners.modals.create')
+@endsection
+
+@section('scripts')
+    <script>
+        $(function() {
+            $("#owners").DataTable({
+                "responsive": true,
+                "order": [
+                    [1, "desc"]
+                ],
+            });
+        });
+    </script>
+    @include('layouts.partials.alerts.success')
+    @include('layouts.partials.alerts.error')
 @endsection
