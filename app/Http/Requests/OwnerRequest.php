@@ -36,8 +36,19 @@ class OwnerRequest extends FormRequest
 
     public function messages()
     {
+
         return [
             'required' => 'This field is required.',
+            'errorMessage' => 'TGEfawef',
+
         ];
+    }
+
+    public function withValidator($validator)
+    {
+        if ($validator->fails()) {
+            session()->flash('error', 'Please complete all required fields.');
+            session()->flash('errorMessage', 'All fields are required. Please ensure all fields are completed.');
+        }
     }
 }

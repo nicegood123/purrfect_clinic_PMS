@@ -19,13 +19,13 @@ class OwnerController extends Controller
 
     public function store(OwnerRequest $request)
     {
-
         Owner::firstOrCreate($request->validated());
 
         session()->flash('success', 'New pet owner has been added.');
         return back();
     }
-    public function update(Request $request, $id)
+
+    public function update(OwnerRequest $request, $id)
     {
 
         $owner = Owner::find($id);
@@ -48,7 +48,7 @@ class OwnerController extends Controller
         $owner->update($data);
 
 
-        session()->flash('success', 'Action plan updated');
+        session()->flash('success', 'Pet owner info has been updated.');
         return back();
     }
 
@@ -63,7 +63,21 @@ class OwnerController extends Controller
 
         $owner->delete();
 
-        session()->flash('success', 'Deleted.');
+        session()->flash('success', 'Pet owner info has been deleted.');
         return back();
     }
+
+    // public function validateRequest()
+    // {
+    //     return request()->validate([
+    //         'name' => 'required',
+    //         'email' => 'required|email|unique:owners',
+    //         'mobile_number' => 'required|regex:/(9)[0-9]/|size:10',
+    //         'address' => 'required',
+    //         'city' => 'required',
+    //         'zip_code' => 'required',
+    //     ], [
+    //         'required' => 'This field is required.',
+    //     ]);
+    // }
 }
