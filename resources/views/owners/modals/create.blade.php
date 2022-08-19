@@ -15,8 +15,8 @@
                             <label for="name">Name</label>
                             <span class="float-right">
                                 <input class="custom-control-input custom-control-input-teal" type="checkbox"
-                                    id="isActive" name="is_active" value="1" checked>
-                                <label for="isActive" class="custom-control-label">Active</label>
+                                    id="addIsActive" name="is_active" value="1" checked>
+                                <label for="addIsActive" class="custom-control-label">Active</label>
                             </span>
                             <input type="text" class="form-control" id="name" name="name">
                         </div>

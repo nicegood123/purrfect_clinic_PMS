@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Owner;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str as IlluminateStr;
-use Psy\Util\Str;
 
 class OwnerController extends Controller
 {
@@ -31,26 +29,50 @@ class OwnerController extends Controller
             'is_active' => $request->is_active,
         ];
 
-        $owner = Owner::firstOrCreate($data);
+        Owner::firstOrCreate($data);
 
-        return redirect(route('owners.index'));
+        session()->flash('success', 'Action plan added');
+        return back();
     }
-    // public function update(Request $request, $id)
-    // {
+    public function update(Request $request, $id)
+    {
 
-    //     $data = [
-    //         'name' => $request->name,
-    //         'address' => $request->address,
-    //         'city' => $request->city,
-    //         'zip_code' => $request->zip_code,
-    //         'mobile_number' => $request->mobile_number,
-    //         'email' => $request->email,
-    //         'is_active' => $request->is_active,
-    //     ];
+        $owner = Owner::find($id);
 
-    //     $user->update(['name' => request('name')]);
+        if (!$owner) {
+            session()->flash('error', 'Owner not found.');
+            return back();
+        }
 
-    //     session()->flash('success', 'Action plan updated');
-    //     return back();
-    // }
+        $data = [
+            'name' => $request->name,
+            'address' => $request->address,
+            'city' => $request->city,
+            'zip_code' => $request->zip_code,
+            'mobile_number' => $request->mobile_number,
+            'email' => $request->email,
+            'is_active' => $request->is_active == 1 ? 1 : 0,
+        ];
+
+        $owner->update($data);
+
+
+        session()->flash('success', 'Action plan updated');
+        return back();
+    }
+
+    public function delete($id)
+    {
+        $owner = Owner::find($id);
+
+        if (!$owner) {
+            session()->flash('error', 'Owner not found.');
+            return back();
+        }
+
+        $owner->delete();
+
+        session()->flash('success', 'Deleted.');
+        return back();
+    }
 }
