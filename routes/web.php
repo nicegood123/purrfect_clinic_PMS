@@ -22,11 +22,15 @@ Route::group(['prefix' => 'pets'], function () {
     Route::get('/', 'PetController@index')->name('pets.index');
     // Route::post('save', 'FeedbackSourcesController@save');
     // Route::post('update/{id}', 'FeedbackSourcesController@update');
-    // Route::get('delete/{id}', 'FeedbackSourcesController@delete');
+    Route::get('delete/{id}', 'FeedbackSourcesController@delete');
 });
 
 
 // Owners Routes
 Route::group(['prefix' => 'owners'], function () {
     Route::get('/', 'OwnerController@index')->name('owners.index');
+    Route::post('/', 'OwnerController@store')->name('owners.store');
+    Route::get('/{id}', 'OwnerController@show')->name('owners.show');
+    Route::post('update/{id}', 'OwnerController@update')->name('owners.update');
+    Route::get('delete/{id}', 'OwnerController@delete')->name('owners.delete');
 });

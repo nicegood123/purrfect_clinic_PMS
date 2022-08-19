@@ -34,36 +34,30 @@
                                         <th>Name</th>
                                         <th>Mobile Number</th>
                                         <th>Email</th>
-                                        <th>Email</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach ($feedbackSources as $feedbackSource)
+                                    @foreach ($owners as $owner)
                                         <tr>
-                                            <td>{{ $feedbackSource->name }}</td>
+                                            <td>{{ $owner->id }}</td>
+                                            <td>{{ $owner->name }}</td>
+                                            <td>{{ $owner->mobile_number }}</td>
+                                            <td>{{ $owner->email }}</td>
                                             <td class="text-center">
-                                                {{ Carbon\Carbon::parse($feedbackSource->created_at)->format('m-d-Y g:i A') }}
+                                                <button type="button" class="btn bg-orange btn-sm" data-toggle="modal"
+                                                    data-target="#edit-{{ $owner->id }}">
+                                                    <span class="fas fa-edit text-white"></span>
+                                                </button>
+                                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                                    data-target="#delete-{{ $owner->id }}">
+                                                    <span class="fas fa-trash"></span>
+                                                </button>
                                             </td>
-                                            <td class="text-center">
-                                                {{ Carbon\Carbon::parse($feedbackSource->updated_at)->format('m-d-Y g:i A') }}
-                                            </td>
-                                            @if (Auth::user()->user_type == 3)
-                                                <td class="text-center">
-                                                    <button type="button" class="btn bg-orange btn-sm" data-toggle="modal"
-                                                        data-target="#edit-{{ $feedbackSource->id }}">
-                                                        <span class="fas fa-edit text-white"></span>
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                                        data-target="#delete-{{ $feedbackSource->id }}">
-                                                        <span class="fas fa-trash"></span>
-                                                    </button>
-                                                </td>
-                                                @include('feedback_sources.modals.edit')
-                                                @include('feedback_sources.modals.delete')
-                                            @endif
+                                            @include('owners.modals.edit')
+                                            @include('owners.modals.delete')
                                         </tr>
-                                    @endforeach --}}
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
