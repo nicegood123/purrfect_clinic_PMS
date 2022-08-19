@@ -25,6 +25,14 @@ class OwnerController extends Controller
         return back();
     }
 
+    public function edit($id)
+    {
+
+        $owner = Owner::findOrFail($id);
+
+        return view('owners.edit', compact('owner'));
+    }
+
     public function update(OwnerRequest $request, $id)
     {
 
@@ -35,17 +43,18 @@ class OwnerController extends Controller
             return back();
         }
 
-        $data = [
-            'name' => $request->name,
-            'address' => $request->address,
-            'city' => $request->city,
-            'zip_code' => $request->zip_code,
-            'mobile_number' => $request->mobile_number,
-            'email' => $request->email,
-            'is_active' => $request->is_active == 1 ? 1 : 0,
-        ];
+        // $data = [
+        //     'name' => $request->name,
+        //     'address' => $request->address,
+        //     'city' => $request->city,
+        //     'zip_code' => $request->zip_code,
+        //     'mobile_number' => $request->mobile_number,
+        //     'email' => $request->email,
+        //     'is_active' => $request->is_active == 1 ? 1 : 0,
+        // ];
 
-        $owner->update($data);
+        // $owner->update($data);
+        $owner->update($request->validated());
 
 
         session()->flash('success', 'Pet owner info has been updated.');
