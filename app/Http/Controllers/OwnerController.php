@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OwnerRequest;
 use App\Owner;
 use Illuminate\Http\Request;
 
@@ -16,22 +17,12 @@ class OwnerController extends Controller
         return view('owners.index', compact(['owners', 'ownerID']));
     }
 
-    public function store(Request $request)
+    public function store(OwnerRequest $request)
     {
 
-        $data = [
-            'name' => $request->name,
-            'address' => $request->address,
-            'city' => $request->city,
-            'zip_code' => $request->zip_code,
-            'mobile_number' => $request->mobile_number,
-            'email' => $request->email,
-            'is_active' => $request->is_active,
-        ];
+        Owner::firstOrCreate($request->validated());
 
-        Owner::firstOrCreate($data);
-
-        session()->flash('success', 'Action plan added');
+        session()->flash('success', 'New pet owner has been added.');
         return back();
     }
     public function update(Request $request, $id)

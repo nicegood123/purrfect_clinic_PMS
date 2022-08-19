@@ -18,31 +18,67 @@
                                     id="addIsActive" name="is_active" value="1" checked>
                                 <label for="addIsActive" class="custom-control-label">Active</label>
                             </span>
-                            <input type="text" class="form-control" id="name" name="name">
+                            <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                id="name" name="name">
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-8">
                             <label for="email">Email Address</label>
-                            <input type="text" class="form-control" id="email" name="email">
+                            <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                id="email" name="email">
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="col-md-4">
                             <label for="mobileNumber">Mobile No.</label>
-                            <input type="text" class="form-control" id="mobileNumber" name="mobile_number">
+                            <input type="text" class="form-control @error('mobile_number') is-invalid @enderror"
+                                id="mobileNumber" name="mobile_number">
+                            @error('mobile_number')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" name="address">
+                        <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
+                            name="address">
+                        @error('address')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="form-group row">
                         <div class="col-md-8">
                             <label for="city">City</label>
-                            <input type="text" class="form-control" id="city" name="city">
+                            <input type="text" class="form-control @error('city') is-invalid @enderror"
+                                id="city" name="city">
+                            @error('city')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="col-md-4">
                             <label for="zipCode">Zip Code</label>
-                            <input type="text" class="form-control" id="zipCode" name="zip_code">
+                            <input type="text" class="form-control @error('zip_code') is-invalid @enderror"
+                                id="zipCode" name="zip_code">
+                            @error('zip_code')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="float-right mb-3">
