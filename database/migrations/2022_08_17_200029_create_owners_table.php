@@ -18,7 +18,7 @@ class CreateOwnersTable extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('city');
-            $table->string('zip');
+            $table->string('zip_code');
             $table->string('mobile_number');
             $table->string('email')->unique();
             $table->boolean('is_active')->default(1);

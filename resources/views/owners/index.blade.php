@@ -89,6 +89,6 @@
             });
         });
     </script>
-    @include('layouts.partials.alerts.success')
-    @include('layouts.partials.alerts.error')
+    @include('layouts.toaster.success')
+    @include('layouts.toaster.error')
 @endsection
