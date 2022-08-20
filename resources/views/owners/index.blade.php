@@ -25,7 +25,7 @@
                     </a>
                 </div>
                 <div class="col-12">
-                    <div class="card card-outline card-dark">
+                    <div class="card card-outline card-teal">
                         <div class="card-body">
                             <table id="owners" style="width:100%" class="table table-hover table-sm">
                                 <thead>

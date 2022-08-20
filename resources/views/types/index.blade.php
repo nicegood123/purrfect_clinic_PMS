@@ -4,12 +4,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Pets</h1>
+                    <h1>Pet Types</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="/" class="text-teal">Home</a></li>
-                        <li class="breadcrumb-item active">Pets</li>
+                        <li class="breadcrumb-item active">Pet Types</li>
                     </ol>
                 </div>
             </div>
@@ -31,40 +31,34 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Name</th>
                                         <th>Type</th>
                                         <th>Breed</th>
-                                        <th>Gender</th>
-                                        <th>Owner</th>
-                                        <th>Status</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach ($owners as $owner)
+                                    @foreach ($types as $type)
                                         <tr>
-                                            <td>{{ $owner->id }}</td>
-                                            <td>{{ $owner->name }}</td>
-                                            <td>{{ $owner->mobile_number }}</td>
-                                            <td>{{ $owner->email }}</td>
+                                            <td>{{ $type->id }}</td>
+                                            <td>{{ $type->type }}</td>
+                                            <td>{{ $type->breed }}</td>
                                             <td class="text-center">
                                                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                                                    data-target="#info-{{ $owner->id }}">
+                                                    data-target="#info-{{ $type->id }}">
                                                     <span class="fas fa-info-circle"></span>
                                                 </button>
-                                                <a class="btn bg-orange btn-sm"
-                                                    href="{{ route('owners.edit', $owner->id) }}">
+                                                <a class="btn bg-orange btn-sm" href="{{ route('types.edit', $type->id) }}">
                                                     <span class="fas fa-edit text-white"></span>
                                                 </a>
                                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                                    data-target="#delete-{{ $owner->id }}">
+                                                    data-target="#delete-{{ $type->id }}">
                                                     <span class="fas fa-trash"></span>
                                                 </button>
                                             </td>
-                                            @include('owners.modals.info')
-                                            @include('owners.modals.delete')
+                                            {{-- @include('types.modals.info') --}}
+                                            {{-- @include('types.modals.delete') --}}
                                         </tr>
-                                    @endforeach --}}
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -73,4 +67,23 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('modals')
+    @include('owners.modals.create')
+@endsection
+
+@section('scripts')
+    <script>
+        $(function() {
+            $("#owners").DataTable({
+                "responsive": true,
+                "order": [
+                    [1, "desc"]
+                ],
+            });
+        });
+    </script>
+    @include('layouts.toaster.success')
+    @include('layouts.toaster.error')
 @endsection

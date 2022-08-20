@@ -8,6 +8,10 @@ class PetController extends Controller
 {
     public function index()
     {
-        return view('pets.index');
+
+        $owners = Owner::all();
+        $ownerID  = Owner::setID();
+
+        return view('pets.index', compact(['owners', 'ownerID']));
     }
 }

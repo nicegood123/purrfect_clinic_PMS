@@ -30,11 +30,19 @@
                   </li>
 
                   <li class="nav-item">
-                    <a href="{{ route('owners.index') }}" class="nav-link {{ request()->is('owners*') ? 'active' : '' }}">
-                        <i class="fas fa-user-friends nav-icon"></i>
-                        <p>Owners</p>
-                    </a>
-                </li>
+                      <a href="{{ route('owners.index') }}"
+                          class="nav-link {{ request()->is('owners*') ? 'active' : '' }}">
+                          <i class="fas fa-user-friends nav-icon"></i>
+                          <p>Owners</p>
+                      </a>
+                  </li>
+
+                  <li class="nav-item">
+                      <a href="#" class="nav-link">
+                          <i class="fas fa-th-large nav-icon"></i>
+                          <p>Types</p>
+                      </a>
+                  </li>
 
 
               </ul>
