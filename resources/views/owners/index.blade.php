@@ -45,6 +45,10 @@
                                             <td>{{ $owner->mobile_number }}</td>
                                             <td>{{ $owner->email }}</td>
                                             <td class="text-center">
+                                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                                    data-target="#info-{{ $owner->id }}">
+                                                    <span class="fas fa-info-circle"></span>
+                                                </button>
                                                 <a class="btn bg-orange btn-sm"
                                                     href="{{ route('owners.edit', $owner->id) }}">
                                                     <span class="fas fa-edit text-white"></span>
@@ -54,6 +58,7 @@
                                                     <span class="fas fa-trash"></span>
                                                 </button>
                                             </td>
+                                            @include('owners.modals.info')
                                             @include('owners.modals.delete')
                                         </tr>
                                     @endforeach

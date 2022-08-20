@@ -1,10 +1,13 @@
-<div id="edit-{{ $owner->id }}" class="modal fade" role="dialog">
+<div id="info-{{ $owner->id }}" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <form method="POST" action="{{ route('owners.update', $owner->id) }}">
                 {{ csrf_field() }}
-                <div class="modal-body">
-                    <h5 class="text-center mt-3 mb-3"><b>Edit Owner Info</b></h5>
+                <div class="modal-body mb-5">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h5 class="text-center mt-3 mb-3"><b>Pet Owner Info</b></h5>
                     @include('layouts.callouts.error')
                     <div class="form-group row">
                         <div class="col-md-3">
@@ -15,10 +18,13 @@
                         <div class="col-md-9">
                             <label for="name">Name</label>
                             <span class="float-right">
-                                <input class="custom-control-input custom-control-input-teal" type="checkbox"
-                                    id="addIsActive" name="is_active" value="1"
-                                    {{ $owner->is_active == 1 ? 'checked' : '' }}>
-                                <label for="addIsActive" class="custom-control-label">Active</label>
+
+
+                                <label for="addIsActive">
+                                    <span
+                                        class="fa fa-circle {{ $owner->is_active == 1 ? 'text-teal' : 'text-muted' }}"></span>
+                                    Active
+                                </label>
                             </span>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
                                 id="name" name="name" value="{{ $owner->name }}">
@@ -82,12 +88,6 @@
                                 </span>
                             @enderror
                         </div>
-                    </div>
-                    <div class="float-right mb-3">
-                        <button type="button" class="btn btn-default mr-2" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn bg-teal">
-                            <span class="fas fa-save"></span> Save Changes
-                        </button>
                     </div>
                 </div>
             </form>

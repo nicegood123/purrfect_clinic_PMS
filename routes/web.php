@@ -30,7 +30,6 @@ Route::group(['prefix' => 'pets'], function () {
 Route::group(['prefix' => 'owners'], function () {
     Route::get('/', 'OwnerController@index')->name('owners.index');
     Route::post('owners/store', 'OwnerController@store')->name('owners.store');
-    Route::get('/{id}', 'OwnerController@show')->name('owners.show');
     Route::get('{id}/edit', 'OwnerController@edit')->name('owners.edit');
     Route::post('update/{id}', 'OwnerController@update')->name('owners.update');
     Route::get('delete/{id}', 'OwnerController@delete')->name('owners.delete');

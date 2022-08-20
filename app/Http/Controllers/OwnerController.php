@@ -45,7 +45,7 @@ class OwnerController extends Controller
             return back();
         }
 
-        session()->flash('success', 'Nothing has change.');
+        session()->flash('success', 'Nothing has changed.');
         return back();
     }
 
