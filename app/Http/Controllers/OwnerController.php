@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\OwnerRequest;
 use App\Owner;
+use App\Pet;
 use Illuminate\Http\Request;
 
 class OwnerController extends Controller
@@ -54,6 +55,13 @@ class OwnerController extends Controller
 
         if (!$owner) {
             session()->flash('error', 'Owner not found.');
+            return back();
+        }
+
+        $hasPet = Pet::where('owner_id', $owner->id)->first();
+
+        if ($hasPet) {
+            session()->flash('error', 'Pet owner info cannot be deleted. This item is referred to by another object.');
             return back();
         }
 
