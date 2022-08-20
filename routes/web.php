@@ -22,7 +22,7 @@ Route::group(['prefix' => 'pets'], function () {
     Route::get('/', 'PetController@index')->name('pets.index');
     // Route::post('save', 'FeedbackSourcesController@save');
     // Route::post('update/{id}', 'FeedbackSourcesController@update');
-    Route::get('delete/{id}', 'FeedbackSourcesController@delete');
+    Route::get('{id}/delete', 'PetController@delete')->name('pets.delete');
 });
 
 
