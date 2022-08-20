@@ -34,3 +34,11 @@ Route::group(['prefix' => 'owners'], function () {
     Route::post('update/{id}', 'OwnerController@update')->name('owners.update');
     Route::get('delete/{id}', 'OwnerController@delete')->name('owners.delete');
 });
+
+// Owners Routes
+Route::group(['prefix' => 'types'], function () {
+    Route::get('/', 'TypeController@index')->name('types.index');
+    Route::post('owners/store', 'TypeController@store')->name('types.store');
+    Route::post('{id}/update', 'TypeController@update')->name('types.update');
+    Route::get('{id}/delete', 'TypeController@delete')->name('types.delete');
+});

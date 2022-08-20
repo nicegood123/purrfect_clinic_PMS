@@ -1,14 +1,14 @@
-<div id="add" class="modal fade" role="dialog">
+<div id="edit-{{ $type->id }}" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form method="POST" action="{{ route('types.store') }}">
+            <form method="POST" action="{{ route('types.update', $type->id) }}">
                 {{ csrf_field() }}
                 <div class="modal-body">
-                    <h5 class="text-center mt-3 mb-3"><b>Create New Pet Type</b></h5>
+                    <h5 class="text-center mt-3 mb-3"><b>Edit Pet Type Info</b></h5>
                     <div class="form-group">
                         <label for="type">Type Name</label>
                         <input type="text" class="form-control @error('type') is-invalid @enderror" id="type"
-                            name="type">
+                            name="type" value="{{ $type->type }}">
                         @error('type')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -18,7 +18,7 @@
                     <div class="form-group">
                         <label for="breed">Breed</label>
                         <input type="text" class="form-control @error('breed') is-invalid @enderror" id="breed"
-                            name="breed">
+                            name="breed" value="{{ $type->breed }}">
                         @error('breed')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

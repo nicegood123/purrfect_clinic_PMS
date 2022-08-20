@@ -16,10 +16,6 @@ class PetController extends Controller
             ->join('owners', 'owners.id', 'pets.owner_id')
             ->get();
 
-        // $query = ActionPlan::select('action_plans.*')
-        //     ->join('feedback_sources', 'action_plans.feedback_source_id', 'feedback_sources.id');
-
-        // dd($pets);
         return view('pets.index', compact(['pets']));
     }
 

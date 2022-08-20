@@ -27,7 +27,7 @@
                 <div class="col-12">
                     <div class="card card-outline card-teal">
                         <div class="card-body">
-                            <table id="owners" style="width:100%" class="table table-hover table-sm">
+                            <table id="types" style="width:100%" class="table table-hover table-sm">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -43,20 +43,17 @@
                                             <td>{{ $type->type }}</td>
                                             <td>{{ $type->breed }}</td>
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                                                    data-target="#info-{{ $type->id }}">
-                                                    <span class="fas fa-info-circle"></span>
-                                                </button>
-                                                <a class="btn bg-orange btn-sm" href="{{ route('types.edit', $type->id) }}">
+                                                <button type="button" class="btn bg-orange btn-sm" data-toggle="modal"
+                                                    data-target="#edit-{{ $type->id }}">
                                                     <span class="fas fa-edit text-white"></span>
-                                                </a>
+                                                </button>
                                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                                     data-target="#delete-{{ $type->id }}">
                                                     <span class="fas fa-trash"></span>
                                                 </button>
                                             </td>
-                                            {{-- @include('types.modals.info') --}}
-                                            {{-- @include('types.modals.delete') --}}
+                                            @include('types.modals.edit')
+                                            @include('types.modals.delete')
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -70,13 +67,13 @@
 @endsection
 
 @section('modals')
-    @include('owners.modals.create')
+    @include('types.modals.create')
 @endsection
 
 @section('scripts')
     <script>
         $(function() {
-            $("#owners").DataTable({
+            $("#types").DataTable({
                 "responsive": true,
                 "order": [
                     [1, "desc"]
