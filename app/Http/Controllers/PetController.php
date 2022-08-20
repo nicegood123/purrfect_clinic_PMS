@@ -19,7 +19,13 @@ class PetController extends Controller
         return view('pets.index', compact(['pets']));
     }
 
+    public function create()
+    {
 
+        $petID  = Pet::setID();
+
+        return view('pets.create', compact(['petID']));
+    }
 
     public function delete($id)
     {

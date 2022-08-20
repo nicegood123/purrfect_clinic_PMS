@@ -23,7 +23,7 @@
                   </li>
 
                   <li class="nav-item">
-                      <a href="{{ route('pets.index') }}" class="nav-link {{ request()->is('pets') ? 'active' : '' }}">
+                      <a href="{{ route('pets.index') }}" class="nav-link {{ request()->is('pets*') ? 'active' : '' }}">
                           <i class="fas fa-dog nav-icon"></i>
                           <p>Pets</p>
                       </a>
@@ -38,7 +38,7 @@
                   </li>
 
                   <li class="nav-item">
-                      <a href="{{ route('pets.index') }}" class="nav-link {{ request()->is('pets*') ? 'active' : '' }}">
+                      <a href="{{ route('types.index') }}" class="nav-link {{ request()->is('types*') ? 'active' : '' }}">
                           <i class="fas fa-th-large nav-icon"></i>
                           <p>Types</p>
                       </a>

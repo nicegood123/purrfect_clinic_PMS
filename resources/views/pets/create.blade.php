@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6">
-                    <h1>Owners</h1>
+                    <h1>Pets</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -14,11 +14,11 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ route('owners.index') }}" class="text-teal">
-                                Owners
+                            <a href="{{ route('pets.index') }}" class="text-teal">
+                                Pets
                             </a>
                         </li>
-                        <li class="breadcrumb-item active">Edit Owner's Info</li>
+                        <li class="breadcrumb-item active">Create New Pet</li>
                     </ol>
                 </div>
             </div>
@@ -29,42 +29,56 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12 mb-2">
-                    <a href="{{ route('owners.index') }}" class="btn btn-dark float-right">
-                        <span class="fa fa-list"></span> Return to Owners' List
+                    <a href="{{ route('pets.index') }}" class="btn btn-dark float-right">
+                        <span class="fa fa-list"></span> Return to Pets' List
                     </a>
                 </div>
                 <div class="col-sm-12">
                     <div class="card card-outline card-teal">
                         <div class="card-body">
-                            <h5 class="text-center mt-4 mb-3"><b>Edit Owner's Info</b></h5>
+                            <h5 class="text-center mt-4 mb-3"><b>New Pet Info Form</b></h5>
 
                             <div class="row justify-content-center">
                                 <div class="col-sm-10">
-                                    <form method="POST" action="{{ route('owners.update', $owner->id) }}">
+                                    <form method="POST" action="{{ route('pets.store') }}">
                                         {{ csrf_field() }}
                                         @include('layouts.callouts.error')
                                         <div class="form-group row">
-                                            <div class="col-md-3">
+                                            <div class="col-md-2">
                                                 <label for="id">ID No.</label>
-                                                <input type="text" class="form-control bg-white mb-2" id="id"
-                                                    name="id" value="{{ $owner->id }}" readonly>
+                                                <input type="text" class="form-control bg-white" id="id"
+                                                    name="id" value="{{ $petID }}" readonly>
                                             </div>
-                                            <div class="col-md-9">
+                                            <div class="col-md-6">
                                                 <label for="name">Name</label>
+                                                <input type="text"
+                                                    class="form-control @error('name') is-invalid @enderror" id="name"
+                                                    name="name">
+                                                @error('name')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="name">Gender</label>
                                                 <span class="float-right">
                                                     <div
                                                         class="custom-control custom-switch custom-switch-off-default custom-switch-on-teal">
                                                         <input type='hidden' value='0' name='is_active'>
                                                         <input type="checkbox" class="custom-control-input"
-                                                            id="customSwitch3" value="1" name="is_active"
-                                                            {{ $owner->is_active == 1 ? 'checked' : '' }}>
+                                                            id="customSwitch3" value="1" name="is_active" checked>
                                                         <label class="custom-control-label"
                                                             for="customSwitch3">Active</label>
                                                     </div>
                                                 </span>
-                                                <input type="text"
-                                                    class="form-control @error('name') is-invalid @enderror" id="name"
-                                                    name="name" value="{{ $owner->name }}">
+                                                <select class="form-control select2 select2-teal"
+                                                    data-dropdown-css-class="select2-teal" id="gender"
+                                                    style="width: 100%;">
+                                                    <option value="" disabled selected>Select here ...</option>
+                                                    <option>Male</option>
+                                                    <option>Female</option>
+                                                </select>
                                                 @error('name')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -73,23 +87,28 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <div class="col-md-8">
-                                                <label for="email">Email Address</label>
-                                                <input type="text"
-                                                    class="form-control @error('email') is-invalid @enderror" id="email"
-                                                    name="email" value="{{ $owner->email }}">
+                                            <div class="col-md-6">
+                                                <label for="email">Type</label>
+                                                <select class="form-control select2 select2-teal"
+                                                    data-dropdown-css-class="select2-teal" style="width: 100%;">
+                                                    <option value="" disabled selected>Select here ...</option>
+                                                    <option>Male</option>
+                                                    <option>Female</option>
+                                                </select>
                                                 @error('email')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
                                             </div>
-                                            <div class="col-md-4">
-                                                <label for="mobileNumber">Mobile No.</label>
-                                                <input type="text"
-                                                    class="form-control @error('mobile_number') is-invalid @enderror"
-                                                    id="mobileNumber" name="mobile_number"
-                                                    value="{{ $owner->mobile_number }}">
+                                            <div class="col-md-6">
+                                                <label for="mobileNumber">Breed</label>
+                                                <select class="form-control select2 select2-teal"
+                                                    data-dropdown-css-class="select2-teal" style="width: 100%;">
+                                                    <option value="" disabled selected>Select here ...</option>
+                                                    <option>Male</option>
+                                                    <option>Female</option>
+                                                </select>
                                                 @error('mobile_number')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -98,10 +117,8 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="address">Address</label>
-                                            <input type="text"
-                                                class="form-control @error('address') is-invalid @enderror" id="address"
-                                                name="address" value="{{ $owner->address }}">
+                                            <label for="address">Notes</label>
+                                            <textarea class="form-control" rows="2" placeholder="Type here ..." spellcheck="false"></textarea>
                                             @error('address')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -109,22 +126,25 @@
                                             @enderror
                                         </div>
                                         <div class="form-group row">
-                                            <div class="col-md-8">
-                                                <label for="city">City</label>
+                                            <div class="col-md-4">
+                                                <label for="city">Birthdate</label>
                                                 <input type="text"
                                                     class="form-control @error('city') is-invalid @enderror" id="city"
-                                                    name="city" value="{{ $owner->city }}">
+                                                    name="city">
                                                 @error('city')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
                                             </div>
-                                            <div class="col-md-4">
-                                                <label for="zipCode">Zip Code</label>
-                                                <input type="text"
-                                                    class="form-control @error('zip_code') is-invalid @enderror"
-                                                    id="zipCode" name="zip_code" value="{{ $owner->zip_code }}">
+                                            <div class="col-md-8">
+                                                <label for="zipCode">Owner</label>
+                                                <select class="form-control select2 select2-teal"
+                                                    data-dropdown-css-class="select2-teal" style="width: 100%;">
+                                                    <option value="" disabled selected>Select here ...</option>
+                                                    <option>Male</option>
+                                                    <option>Female</option>
+                                                </select>
                                                 @error('zip_code')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -151,6 +171,14 @@
 @endsection
 
 @section('scripts')
+    <script>
+        $(function() {
+
+
+
+
+        })
+    </script>
     @include('layouts.toaster.success')
     @include('layouts.toaster.error')
 @endsection

@@ -20,8 +20,9 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 mb-3">
-                    <a class="btn btn-dark float-right" data-toggle="modal" data-target="#add">
-                        <span class="fa fa-plus"></span> Create New
+                    <a class="btn btn-dark float-right" href="{{ route('pets.create') }}">
+                        <span class="fas fa-plus"></span>
+                         Create New
                     </a>
                 </div>
                 <div class="col-12">

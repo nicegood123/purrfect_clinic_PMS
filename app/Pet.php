@@ -2,6 +2,7 @@
 
 namespace App;
 
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Pet extends Model
@@ -17,4 +18,17 @@ class Pet extends Model
         'owner_id',
         'is_active',
     ];
+
+    public static function setID()
+    {
+        $query  = DB::select("SHOW TABLE STATUS LIKE 'pets'");
+        $petID = $query[0]->Auto_increment;
+
+        return $petID;
+    }
+
+    public static function getID($id)
+    {
+        return Pet::find($id);
+    }
 }
