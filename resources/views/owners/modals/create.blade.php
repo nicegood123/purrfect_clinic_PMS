@@ -15,9 +15,13 @@
                         <div class="col-md-9">
                             <label for="name">Name</label>
                             <span class="float-right">
-                                <input class="custom-control-input custom-control-input-teal" type="checkbox"
-                                    id="addIsActive" name="is_active" value="1" checked>
-                                <label for="addIsActive" class="custom-control-label">Active</label>
+                                <div
+                                    class="custom-control custom-switch custom-switch-off-default custom-switch-on-teal">
+                                    <input type='hidden' value='0' name='is_active'>
+                                    <input type="checkbox" class="custom-control-input" id="addIsActive" value="1"
+                                        name="is_active" checked>
+                                    <label class="custom-control-label" for="addIsActive">Active</label>
+                                </div>
                             </span>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
                                 id="name" name="name" value="{{ old('name') }}">

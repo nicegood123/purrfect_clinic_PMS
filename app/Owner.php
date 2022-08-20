@@ -18,11 +18,16 @@ class Owner extends Model
         'is_active',
     ];
 
-    public static function getID()
+    public static function setID()
     {
         $query  = DB::select("SHOW TABLE STATUS LIKE 'owners'");
         $ownerID = $query[0]->Auto_increment;
       
         return $ownerID;
+    }
+
+    public static function getID($id)
+    {
+        return Owner::find($id);
     }
 }

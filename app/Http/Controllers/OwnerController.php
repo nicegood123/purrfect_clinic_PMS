@@ -12,7 +12,7 @@ class OwnerController extends Controller
     {
 
         $owners = Owner::all();
-        $ownerID  = Owner::getID();
+        $ownerID  = Owner::setID();
 
         return view('owners.index', compact(['owners', 'ownerID']));
     }
@@ -37,27 +37,14 @@ class OwnerController extends Controller
     {
 
         $owner = Owner::find($id);
+        $owner->update($request->validated());
 
-        if (!$owner) {
-            session()->flash('error', 'Owner not found.');
+        if ($owner->getChanges()) {
+            session()->flash('success', 'Pet owner info has been updated.');
             return back();
         }
 
-        // $data = [
-        //     'name' => $request->name,
-        //     'address' => $request->address,
-        //     'city' => $request->city,
-        //     'zip_code' => $request->zip_code,
-        //     'mobile_number' => $request->mobile_number,
-        //     'email' => $request->email,
-        //     'is_active' => $request->is_active == 1 ? 1 : 0,
-        // ];
-
-        // $owner->update($data);
-        $owner->update($request->validated());
-
-
-        session()->flash('success', 'Pet owner info has been updated.');
+        session()->flash('success', 'Nothing has change.');
         return back();
     }
 
@@ -75,18 +62,4 @@ class OwnerController extends Controller
         session()->flash('success', 'Pet owner info has been deleted.');
         return back();
     }
-
-    // public function validateRequest()
-    // {
-    //     return request()->validate([
-    //         'name' => 'required',
-    //         'email' => 'required|email|unique:owners',
-    //         'mobile_number' => 'required|regex:/(9)[0-9]/|size:10',
-    //         'address' => 'required',
-    //         'city' => 'required',
-    //         'zip_code' => 'required',
-    //     ], [
-    //         'required' => 'This field is required.',
-    //     ]);
-    // }
 }
