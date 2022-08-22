@@ -53,14 +53,14 @@
                                                 <label for="name">Name</label>
                                                 <input type="text"
                                                     class="form-control @error('name') is-invalid @enderror" id="name"
-                                                    name="name">
+                                                    name="name" value="{{ old('name') }}">
                                                 @error('name')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
                                             </div>
-                                            <div class="col-md-4 @error('owner_id') is-invalid @enderror">
+                                            <div class="col-md-4 @error('gender') is-invalid @enderror">
                                                 <label for="gender">Gender</label>
                                                 <span class="float-right">
                                                     <div
@@ -76,9 +76,11 @@
                                                     class="form-control @error('gender') is-invalid @enderror select2 select2-teal"
                                                     data-dropdown-css-class="select2-teal" id="gender" name="gender"
                                                     style="width: 100%;">
-                                                    <option value="" disabled selected>Select here ...</option>
-                                                    <option value="Male">Male</option>
-                                                    <option value="Female">Female</option>
+                                                    <option disabled selected>Select here ...</option>
+                                                    <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>
+                                                        Male</option>
+                                                    <option value="Female"
+                                                        {{ old('gender') == 'Female' ? 'selected' : '' }}>Female</option>
                                                 </select>
                                                 @error('gender')
                                                     <span class="invalid-feedback" role="alert">
@@ -93,7 +95,8 @@
                                                 <div class="input-group date" id="birthdate" data-target-input="nearest">
                                                     <input type="text" name="birthdate"
                                                         class="form-control datetimepicker-input @error('birthdate') is-invalid @enderror"
-                                                        data-target="#birthdate" id="birthdate">
+                                                        data-target="#birthdate" id="birthdate"
+                                                        value="{{ old('birthdate') }}">
                                                     <div class="input-group-append" data-target="#birthdate"
                                                         data-toggle="datetimepicker">
                                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -105,7 +108,7 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 @error('owner_id') is-invalid @enderror">
+                                            <div class="col-md-6 @error('breed_id') is-invalid @enderror">
                                                 <label for="breed">Breed</label>
                                                 <select
                                                     class="form-control select2 select2-teal @error('breed_id') is-invalid @enderror"
@@ -113,7 +116,9 @@
                                                     style="width: 100%;">
                                                     <option disabled selected>Select here ...</option>
                                                     @foreach ($breeds as $breed)
-                                                        <option value="{{ $breed->id }}">{{ $breed->breed }}</option>
+                                                        <option value="{{ $breed->id }}"
+                                                            {{ old('breed_id') == $breed->id ? 'selected' : '' }}>
+                                                            {{ $breed->breed }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('breed_id')
@@ -126,7 +131,7 @@
                                         <div class="form-group">
                                             <label for="notes">Notes</label>
                                             <textarea class="form-control @error('notes') is-invalid @enderror" rows="2" placeholder="Type here ..."
-                                                name="notes" id="notes" spellcheck="false"></textarea>
+                                                name="notes" id="notes" spellcheck="false">{{ old('notes') }}</textarea>
                                             @error('notes')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -140,9 +145,11 @@
                                                     class="form-control @error('owner_id') is-invalid @enderror select2 select2-teal"
                                                     name="owner_id" id="owner" data-dropdown-css-class="select2-teal"
                                                     style="width: 100%;">
-                                                    <option value="" disabled selected>Select here ...</option>
+                                                    <option disabled selected>Select here ...</option>
                                                     @foreach ($owners as $owner)
-                                                        <option value="{{ $owner->id }}">{{ $owner->name }}</option>
+                                                        <option value="{{ $owner->id }}"
+                                                            {{ old('owner_id' == $owner->id ? 'selected' : '') }}>
+                                                            {{ $owner->name }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('owner_id')
