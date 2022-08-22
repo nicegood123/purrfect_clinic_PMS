@@ -42,3 +42,13 @@ Route::group(['prefix' => 'types'], function () {
     Route::post('{id}/update', 'TypeController@update')->name('types.update');
     Route::get('{id}/delete', 'TypeController@delete')->name('types.delete');
 });
+
+// Breed Routes
+Route::group(['prefix' => 'breeds'], function () {
+    Route::get('/', 'BreedController@index')->name('breeds.index');
+    Route::post('store', 'BreedController@store')->name('breeds.store');
+    Route::post('{id}/update', 'BreedController@update')->name('breeds.update');
+    Route::get('{id}/delete', 'BreedController@delete')->name('breeds.delete');
+});
+
+

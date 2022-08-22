@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Owner;
 use App\Pet;
+use App\Type;
 use Illuminate\Http\Request;
 
 class PetController extends Controller
@@ -16,6 +17,7 @@ class PetController extends Controller
             ->join('owners', 'owners.id', 'pets.owner_id')
             ->get();
 
+
         return view('pets.index', compact(['pets']));
     }
 
@@ -23,8 +25,19 @@ class PetController extends Controller
     {
 
         $petID  = Pet::setID();
+        $types = Type::select('type')->groupBy('type')->get();
 
-        return view('pets.create', compact(['petID']));
+
+        return view('pets.create', compact(['petID', 'types']));
+    }
+
+    public function store(Request $request)
+    {
+        // Pet::firstOrCreate($request->validated());
+        // session()->flash('success', 'New pet has been added.');
+        // return back();
+
+        dd($request->all());
     }
 
     public function delete($id)

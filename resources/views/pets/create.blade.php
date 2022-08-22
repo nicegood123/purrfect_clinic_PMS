@@ -73,33 +73,35 @@
                                                     </div>
                                                 </span>
                                                 <select class="form-control select2 select2-teal"
-                                                    data-dropdown-css-class="select2-teal" id="gender"
+                                                    data-dropdown-css-class="select2-teal" id="gender" name="gender"
                                                     style="width: 100%;">
                                                     <option value="" disabled selected>Select here ...</option>
-                                                    <option>Male</option>
-                                                    <option>Female</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
                                                 </select>
-                                                @error('name')
+                                                {{-- @error('name')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
-                                                @enderror
+                                                @enderror --}}
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-md-6">
                                                 <label for="email">Type</label>
                                                 <select class="form-control select2 select2-teal"
-                                                    data-dropdown-css-class="select2-teal" style="width: 100%;">
+                                                    data-dropdown-css-class="select2-teal" name="type_id"
+                                                    style="width: 100%;">
                                                     <option value="" disabled selected>Select here ...</option>
-                                                    <option>Male</option>
-                                                    <option>Female</option>
+                                                    @foreach ($types as $type)
+                                                        <option value="{{ $type->id }}">{{ $type->type }}</option>
+                                                    @endforeach
                                                 </select>
-                                                @error('email')
+                                                {{-- @error('email')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
-                                                @enderror
+                                                @enderror --}}
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="mobileNumber">Breed</label>
@@ -109,16 +111,16 @@
                                                     <option>Male</option>
                                                     <option>Female</option>
                                                 </select>
-                                                @error('mobile_number')
+                                                {{-- @error('mobile_number')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
-                                                @enderror
+                                                @enderror --}}
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="address">Notes</label>
-                                            <textarea class="form-control" rows="2" placeholder="Type here ..." spellcheck="false"></textarea>
+                                            <textarea class="form-control" rows="2" placeholder="Type here ..." name="notes" spellcheck="false"></textarea>
                                             @error('address')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -127,11 +129,11 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-md-4">
-                                                <label for="city">Birthdate</label>
+                                                <label for="birthdate">Birthdate</label>
                                                 <input type="text"
-                                                    class="form-control @error('city') is-invalid @enderror" id="city"
-                                                    name="city">
-                                                @error('city')
+                                                    class="form-control @error('birthdate') is-invalid @enderror"
+                                                    id="birthdate" name="birthdate">
+                                                @error('birthdate')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -145,11 +147,11 @@
                                                     <option>Male</option>
                                                     <option>Female</option>
                                                 </select>
-                                                @error('zip_code')
+                                                {{-- @error('zip_code')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
-                                                @enderror
+                                                @enderror --}}
                                             </div>
                                         </div>
                                         <div class="float-right mb-5">

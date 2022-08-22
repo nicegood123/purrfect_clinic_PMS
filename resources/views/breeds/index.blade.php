@@ -9,7 +9,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="/" class="text-teal">Home</a></li>
-                        <li class="breadcrumb-item active">Pet Types</li>
+                        <li class="breadcrumb-item active">Pet Breeds</li>
                     </ol>
                 </div>
             </div>
@@ -27,33 +27,33 @@
                 <div class="col-12">
                     <div class="card card-outline card-teal">
                         <div class="card-body">
-                            <table id="types" style="width:100%" class="table table-hover table-sm">
+                            <table id="breeds" style="width:100%" class="table table-hover table-sm">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Type</th>
                                         <th>Breed</th>
+                                        <th>type</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($types as $type)
+                                    @foreach ($breeds as $breed)
                                         <tr>
-                                            <td>{{ $type->id }}</td>
-                                            <td>{{ $type->type }}</td>
-                                            <td>{{ $type->breed }}</td>
+                                            <td>{{ $breed->id }}</td>
+                                            <td>{{ $breed->breed }}</td>
+                                            <td>{{ $breed->type }}</td>
                                             <td class="text-center">
                                                 <button type="button" class="btn bg-orange btn-sm" data-toggle="modal"
-                                                    data-target="#edit-{{ $type->id }}">
+                                                    data-target="#edit-{{ $breed->id }}">
                                                     <span class="fas fa-edit text-white"></span>
                                                 </button>
                                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                                    data-target="#delete-{{ $type->id }}">
+                                                    data-target="#delete-{{ $breed->id }}">
                                                     <span class="fas fa-trash"></span>
                                                 </button>
                                             </td>
-                                            @include('types.modals.edit')
-                                            @include('types.modals.delete')
+                                            @include('breeds.modals.edit')
+                                            @include('breeds.modals.delete')
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -67,13 +67,13 @@
 @endsection
 
 @section('modals')
-    @include('types.modals.create')
+    @include('breeds.modals.create')
 @endsection
 
 @section('scripts')
     <script>
         $(function() {
-            $("#types").DataTable({
+            $("#breeds").DataTable({
                 "responsive": true,
                 "order": [
                     [1, "desc"]

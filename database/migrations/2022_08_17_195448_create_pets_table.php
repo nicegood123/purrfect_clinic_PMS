@@ -19,7 +19,7 @@ class CreatePetsTable extends Migration
             $table->timestamp('birthdate');
             $table->enum('gender', ['Male', 'Female']);
             $table->longText('notes');
-            $table->bigInteger('type_id');
+            $table->bigInteger('breed_id');
             $table->bigInteger('owner_id');
             $table->boolean('is_active')->default(1);
             $table->timestamps();
