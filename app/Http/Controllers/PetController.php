@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Breed;
+use App\Http\Requests\PetRequest;
 use App\Owner;
 use App\Pet;
 use App\Type;
@@ -33,7 +34,7 @@ class PetController extends Controller
         return view('pets.create', compact(['petID', 'breeds', 'owners']));
     }
 
-    public function store(Request $request)
+    public function store(PetRequest $request)
     {
         // Pet::firstOrCreate($request->validated());
         // session()->flash('success', 'New pet has been added.');

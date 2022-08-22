@@ -17,7 +17,7 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea class="form-control" rows="2" placeholder="Type here ..." id="description" name="description"
+                        <textarea class="form-control @error('description') is-invalid @enderror" rows="2" placeholder="Type here ..." id="description" name="description"
                             spellcheck="false"></textarea>
                         @error('description')
                             <span class="invalid-feedback" role="alert">
@@ -27,7 +27,7 @@
                     </div>
                     <div class="form-group">
                         <label for="breed">Type</label>
-                        <select class="form-control select2 select2-teal" data-dropdown-css-class="select2-teal"
+                        <select class="form-control select2 select2-teal @error('type_id') is-invalid @enderror" data-dropdown-css-class="select2-teal"
                             name="type_id" style="width: 100%;">
                             <option value="" disabled selected>Select here ...</option>
                             @foreach ($types as $type)

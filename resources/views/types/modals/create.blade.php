@@ -17,7 +17,7 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea class="form-control" rows="2" placeholder="Type here ..." id="description" name="description"
+                        <textarea class="form-control @error('description') is-invalid @enderror" rows="2" placeholder="Type here ..." id="description" name="description"
                             spellcheck="false"></textarea>
                         @error('description')
                             <span class="invalid-feedback" role="alert">

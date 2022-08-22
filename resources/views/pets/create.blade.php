@@ -60,8 +60,8 @@
                                                     </span>
                                                 @enderror
                                             </div>
-                                            <div class="col-md-4">
-                                                <label for="name">Gender</label>
+                                            <div class="col-md-4 @error('owner_id') is-invalid @enderror">
+                                                <label for="gender">Gender</label>
                                                 <span class="float-right">
                                                     <div
                                                         class="custom-control custom-switch custom-switch-off-default custom-switch-on-teal">
@@ -72,72 +72,84 @@
                                                             for="customSwitch3">Active</label>
                                                     </div>
                                                 </span>
-                                                <select class="form-control select2 select2-teal"
+                                                <select
+                                                    class="form-control @error('gender') is-invalid @enderror select2 select2-teal"
                                                     data-dropdown-css-class="select2-teal" id="gender" name="gender"
                                                     style="width: 100%;">
                                                     <option value="" disabled selected>Select here ...</option>
                                                     <option value="Male">Male</option>
                                                     <option value="Female">Female</option>
                                                 </select>
-                                                {{-- @error('name')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror --}}
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-md-6">
-                                                <label for="birthdate">Birthdate</label>
-                                                <input type="text"
-                                                    class="form-control @error('birthdate') is-invalid @enderror"
-                                                    id="birthdate" name="birthdate">
-                                                @error('birthdate')
+                                                @error('gender')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
                                             </div>
+                                        </div>
+                                        <div class="form-group row">
                                             <div class="col-md-6">
-                                                <label for="mobileNumber">Breed</label>
-                                                <select class="form-control select2 select2-teal" name="breed_id"
-                                                    data-dropdown-css-class="select2-teal" style="width: 100%;">
-                                                    <option value="" disabled selected>Select here ...</option>
+                                                <label for="birthdate">Birthdate</label>
+                                                <div class="input-group date" id="birthdate" data-target-input="nearest">
+                                                    <input type="text" name="birthdate"
+                                                        class="form-control datetimepicker-input @error('birthdate') is-invalid @enderror"
+                                                        data-target="#birthdate" id="birthdate">
+                                                    <div class="input-group-append" data-target="#birthdate"
+                                                        data-toggle="datetimepicker">
+                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                    </div>
+                                                    @error('birthdate')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 @error('owner_id') is-invalid @enderror">
+                                                <label for="breed">Breed</label>
+                                                <select
+                                                    class="form-control select2 select2-teal @error('breed_id') is-invalid @enderror"
+                                                    name="breed_id" data-dropdown-css-class="select2-teal" id="breed"
+                                                    style="width: 100%;">
+                                                    <option disabled selected>Select here ...</option>
                                                     @foreach ($breeds as $breed)
                                                         <option value="{{ $breed->id }}">{{ $breed->breed }}</option>
                                                     @endforeach
                                                 </select>
-                                                {{-- @error('mobile_number')
+                                                @error('breed_id')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
-                                                @enderror --}}
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="address">Notes</label>
-                                            <textarea class="form-control" rows="2" placeholder="Type here ..." name="notes" spellcheck="false"></textarea>
-                                            @error('address')
+                                            <label for="notes">Notes</label>
+                                            <textarea class="form-control @error('notes') is-invalid @enderror" rows="2" placeholder="Type here ..."
+                                                name="notes" id="notes" spellcheck="false"></textarea>
+                                            @error('notes')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="form-group row @error('owner_id') is-invalid @enderror">
                                             <div class="col-md-12">
-                                                <label for="zipCode">Owner</label>
-                                                <select class="form-control select2 select2-teal" name="owner_id"
-                                                    data-dropdown-css-class="select2-teal" style="width: 100%;">
+                                                <label for="owner">Owner</label>
+                                                <select
+                                                    class="form-control @error('owner_id') is-invalid @enderror select2 select2-teal"
+                                                    name="owner_id" id="owner" data-dropdown-css-class="select2-teal"
+                                                    style="width: 100%;">
                                                     <option value="" disabled selected>Select here ...</option>
                                                     @foreach ($owners as $owner)
                                                         <option value="{{ $owner->id }}">{{ $owner->name }}</option>
                                                     @endforeach
                                                 </select>
-                                                {{-- @error('zip_code')
+                                                @error('owner_id')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
-                                                @enderror --}}
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="float-right mb-5">
@@ -162,7 +174,10 @@
     <script>
         $(function() {
 
-
+            // Birthdate Date Picker
+            $('#birthdate').datetimepicker({
+                format: 'L'
+            });
 
 
         })

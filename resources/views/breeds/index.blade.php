@@ -80,6 +80,16 @@
                 ],
             });
         });
+
+        $(document).ready(function() {
+
+            $('#type_id').select2({
+                theme: 'bootstrap'
+            });
+
+            $("#type_id + span").addClass("is-invalid");
+
+        });
     </script>
     @include('layouts.toaster.success')
     @include('layouts.toaster.error')
