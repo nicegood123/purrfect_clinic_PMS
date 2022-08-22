@@ -18,8 +18,8 @@ class TypeController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'type' => 'required',
-            'breed' => 'required|unique:types',
+            'type' => 'required|unique:types',
+            'description' => 'required',
         ]);
 
         Type::firstOrCreate($validated);
@@ -32,8 +32,8 @@ class TypeController extends Controller
     {
 
         $validated = $request->validate([
-            'type' => 'required',
-            'breed' => 'required|unique:types,breed,' . $id,
+            'type' => 'required|unique:types,type,' . $id,
+            'description' => 'required',
         ]);
 
         $type = Type::findOrFail($id);
