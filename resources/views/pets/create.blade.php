@@ -88,28 +88,24 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-md-6">
-                                                <label for="email">Type</label>
-                                                <select class="form-control select2 select2-teal"
-                                                    data-dropdown-css-class="select2-teal" name="type_id"
-                                                    style="width: 100%;">
-                                                    <option value="" disabled selected>Select here ...</option>
-                                                    @foreach ($types as $type)
-                                                        <option value="{{ $type->id }}">{{ $type->type }}</option>
-                                                    @endforeach
-                                                </select>
-                                                {{-- @error('email')
+                                                <label for="birthdate">Birthdate</label>
+                                                <input type="text"
+                                                    class="form-control @error('birthdate') is-invalid @enderror"
+                                                    id="birthdate" name="birthdate">
+                                                @error('birthdate')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
-                                                @enderror --}}
+                                                @enderror
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="mobileNumber">Breed</label>
-                                                <select class="form-control select2 select2-teal"
+                                                <select class="form-control select2 select2-teal" name="breed_id"
                                                     data-dropdown-css-class="select2-teal" style="width: 100%;">
                                                     <option value="" disabled selected>Select here ...</option>
-                                                    <option>Male</option>
-                                                    <option>Female</option>
+                                                    @foreach ($breeds as $breed)
+                                                        <option value="{{ $breed->id }}">{{ $breed->breed }}</option>
+                                                    @endforeach
                                                 </select>
                                                 {{-- @error('mobile_number')
                                                     <span class="invalid-feedback" role="alert">
@@ -128,24 +124,14 @@
                                             @enderror
                                         </div>
                                         <div class="form-group row">
-                                            <div class="col-md-4">
-                                                <label for="birthdate">Birthdate</label>
-                                                <input type="text"
-                                                    class="form-control @error('birthdate') is-invalid @enderror"
-                                                    id="birthdate" name="birthdate">
-                                                @error('birthdate')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="col-md-8">
+                                            <div class="col-md-12">
                                                 <label for="zipCode">Owner</label>
-                                                <select class="form-control select2 select2-teal"
+                                                <select class="form-control select2 select2-teal" name="owner_id"
                                                     data-dropdown-css-class="select2-teal" style="width: 100%;">
                                                     <option value="" disabled selected>Select here ...</option>
-                                                    <option>Male</option>
-                                                    <option>Female</option>
+                                                    @foreach ($owners as $owner)
+                                                        <option value="{{ $owner->id }}">{{ $owner->name }}</option>
+                                                    @endforeach
                                                 </select>
                                                 {{-- @error('zip_code')
                                                     <span class="invalid-feedback" role="alert">

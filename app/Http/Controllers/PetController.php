@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Breed;
 use App\Owner;
 use App\Pet;
 use App\Type;
@@ -18,6 +19,7 @@ class PetController extends Controller
             ->join('owners', 'owners.id', 'pets.owner_id')
             ->get();
 
+
         return view('pets.index', compact(['pets']));
     }
 
@@ -25,9 +27,10 @@ class PetController extends Controller
     {
 
         $petID  = Pet::setID();
-        $types = Type::select('type')->groupBy('type')->get();
+        $breeds = Breed::all();
+        $owners = Owner::all();
 
-        return view('pets.create', compact(['petID', 'types']));
+        return view('pets.create', compact(['petID', 'breeds', 'owners']));
     }
 
     public function store(Request $request)
