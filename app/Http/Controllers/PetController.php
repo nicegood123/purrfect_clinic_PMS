@@ -12,11 +12,11 @@ class PetController extends Controller
     public function index()
     {
 
-        $pets = Pet::select('pets.*', 'types.*', 'owners.name  as owner_name')
-            ->join('types', 'types.id', 'pets.type_id')
+        $pets = Pet::select('pets.*', 'breeds.*', 'types.*', 'owners.name  as owner_name')
+            ->join('breeds', 'breeds.id', 'pets.breed_id')
+            ->join('types', 'types.id', 'breeds.type_id')
             ->join('owners', 'owners.id', 'pets.owner_id')
             ->get();
-
 
         return view('pets.index', compact(['pets']));
     }
@@ -26,7 +26,6 @@ class PetController extends Controller
 
         $petID  = Pet::setID();
         $types = Type::select('type')->groupBy('type')->get();
-
 
         return view('pets.create', compact(['petID', 'types']));
     }

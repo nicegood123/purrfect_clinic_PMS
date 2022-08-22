@@ -38,21 +38,20 @@
                   </li>
 
                   <li class="nav-item">
+                    <a href="{{ route('breeds.index') }}"
+                        class="nav-link {{ request()->is('breeds*') ? 'active' : '' }}">
+                        <i class="fas fa-th-large nav-icon"></i>
+                        <p>Breeds</p>
+                    </a>
+                </li>
+
+                  <li class="nav-item">
                       <a href="{{ route('types.index') }}"
                           class="nav-link {{ request()->is('types*') ? 'active' : '' }}">
                           <i class="fas fa-th-large nav-icon"></i>
                           <p>Types</p>
                       </a>
                   </li>
-
-                  <li class="nav-item">
-                      <a href="{{ route('breeds.index') }}"
-                          class="nav-link {{ request()->is('breeds*') ? 'active' : '' }}">
-                          <i class="fas fa-th-large nav-icon"></i>
-                          <p>Breeds</p>
-                      </a>
-                  </li>
-
 
               </ul>
           </nav>
