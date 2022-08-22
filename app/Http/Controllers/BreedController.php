@@ -10,9 +10,10 @@ class BreedController extends Controller
 {
     public function index()
     {
-
         $types = Type::all();
-        $breeds = Breed::all();
+        $breeds = Breed::select('breeds.*', 'types.*')
+            ->join('types', 'types.id', 'breeds.type_id')
+            ->get();
 
         return view('breeds.index', compact(['types', 'breeds']));
     }
@@ -21,7 +22,8 @@ class BreedController extends Controller
     {
         $validated = $request->validate([
             'breed' => 'required|unique:breeds',
-            'type' => 'required|unique:breeds',
+            'description' => 'required',
+            'type_id' => 'required|unique:breeds',
         ]);
 
         Breed::firstOrCreate($validated);
@@ -34,15 +36,16 @@ class BreedController extends Controller
     {
 
         $validated = $request->validate([
-            'type' => 'required',
-            'breed' => 'required|unique:types,breed,' . $id,
+            'breed' => 'required|unique:breeds,breed,' . $id,
+            'description' => 'required',
+            'type_id' => 'required',
         ]);
 
-        $type = Type::findOrFail($id);
-        $type->update($validated);
+        $breed = Breed::findOrFail($id);
+        $breed->update($validated);
 
-        if ($type->getChanges()) {
-            session()->flash('success', 'Pet type info has been updated.');
+        if ($breed->getChanges()) {
+            session()->flash('success', 'Pet breed info has been updated.');
             return back();
         }
 
@@ -52,10 +55,10 @@ class BreedController extends Controller
 
     public function delete($id)
     {
-        $type = Type::findOrFail($id);
-        $type->delete();
+        $breed = Breed::findOrFail($id);
+        $breed->delete();
 
-        session()->flash('success', 'Pet type record has been deleted.');
+        session()->flash('success', 'Pet breed record has been deleted.');
         return back();
     }
 }

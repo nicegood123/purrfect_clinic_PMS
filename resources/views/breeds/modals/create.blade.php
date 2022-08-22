@@ -4,12 +4,22 @@
             <form method="POST" action="{{ route('breeds.store') }}">
                 {{ csrf_field() }}
                 <div class="modal-body">
-                    <h5 class="text-center mt-3 mb-3"><b>Create New Pet Type</b></h5>
+                    <h5 class="text-center mt-3 mb-3"><b>Create New Pet Breed</b></h5>
                     <div class="form-group">
                         <label for="breed">Breed Name</label>
                         <input type="text" class="form-control @error('breed') is-invalid @enderror" id="breed"
                             name="breed">
                         @error('breed')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" rows="2" placeholder="Type here ..." id="description" name="description"
+                            spellcheck="false"></textarea>
+                        @error('description')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

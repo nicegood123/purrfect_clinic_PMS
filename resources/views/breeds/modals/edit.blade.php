@@ -16,10 +16,26 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="type">Type</label>
-                        <input type="text" class="form-control @error('type') is-invalid @enderror" id="type"
-                            name="type" value="{{ $breed->type }}">
-                        @error('type')
+                        <label for="description">Description</label>
+                        <textarea class="form-control" rows="2" placeholder="Type here ..." id="description" name="description"
+                            spellcheck="false">{{ $breed->description }}</textarea>
+                        @error('description')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="breed">Type</label>
+                        <select class="form-control select2 select2-teal" data-dropdown-css-class="select2-teal"
+                            name="type_id" style="width: 100%;">
+                            <option value="" disabled selected>Select here ...</option>
+                            @foreach ($types as $type)
+                                <option value="{{ $type->id }}"
+                                    {{ $type->id == $breed->type_id ? 'selected' : '' }}>{{ $type->type }}</option>
+                            @endforeach
+                        </select>
+                        @error('type_id')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

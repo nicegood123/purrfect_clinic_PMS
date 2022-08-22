@@ -16,7 +16,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="description">Type</label>
+                        <label for="description">Description</label>
                         <textarea class="form-control" rows="2" placeholder="Type here ..." id="description" name="description"
                             spellcheck="false"></textarea>
                         @error('description')
