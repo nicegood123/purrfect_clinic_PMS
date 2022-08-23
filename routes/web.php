@@ -22,6 +22,8 @@ Route::group(['prefix' => 'pets'], function () {
     Route::get('/', 'PetController@index')->name('pets.index');
     Route::get('create', 'PetController@create')->name('pets.create');
     Route::post('store', 'PetController@store')->name('pets.store');
+    Route::get('{id}/edit', 'PetController@edit')->name('pets.edit');
+    Route::post('{id}/update', 'PetController@update')->name('pets.update');
     Route::get('{id}/delete', 'PetController@delete')->name('pets.delete');
 });
 
@@ -50,5 +52,3 @@ Route::group(['prefix' => 'breeds'], function () {
     Route::post('{id}/update', 'BreedController@update')->name('breeds.update');
     Route::get('{id}/delete', 'BreedController@delete')->name('breeds.delete');
 });
-
-

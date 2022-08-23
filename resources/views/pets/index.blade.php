@@ -22,7 +22,7 @@
                 <div class="col-12 mb-3">
                     <a class="btn btn-dark float-right" href="{{ route('pets.create') }}">
                         <span class="fas fa-plus"></span>
-                         Create New
+                        Create New
                     </a>
                 </div>
                 <div class="col-12">
@@ -53,11 +53,10 @@
                                                 {{-- <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                                     data-target="#info-{{ $pet->id }}">
                                                     <span class="fas fa-info-circle"></span>
-                                                </button>
-                                                <a class="btn bg-orange btn-sm"
-                                                    href="{{ route('owners.edit', $pet->id) }}">
+                                                </button> --}}
+                                                <a class="btn bg-orange btn-sm" href="{{ route('pets.edit', $pet->id) }}">
                                                     <span class="fas fa-edit text-white"></span>
-                                                </a> --}}
+                                                </a>
                                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                                     data-target="#delete-{{ $pet->id }}">
                                                     <span class="fas fa-trash"></span>

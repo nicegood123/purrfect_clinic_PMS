@@ -57,7 +57,31 @@ class PetController extends Controller
         session()->flash('success', 'New pet has been added.');
         return back();
 
-        // dd($request->all());
+    }
+
+    public function edit($id)
+    {
+
+        $pet = Pet::findOrFail($id);
+        $breeds = Breed::all();
+        $owners = Owner::all();
+
+        return view('pets.edit', compact(['pet', 'breeds', 'owners']));
+    }
+
+    public function update(PetRequest $request, $id)
+    {
+
+        $owner = Pet::find($id);
+        $owner->update($request->validated());
+
+        if ($owner->getChanges()) {
+            session()->flash('success', 'Pet owner info has been updated.');
+            return back();
+        }
+
+        session()->flash('success', 'Nothing has changed.');
+        return back();
     }
 
     public function delete($id)

@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6">
-                    <h1>Add New Pet</h1>
+                    <h1>Edit Pet Info</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -18,7 +18,7 @@
                                 Pets
                             </a>
                         </li>
-                        <li class="breadcrumb-item active">Add New Pet</li>
+                        <li class="breadcrumb-item active">Edit Pet Info</li>
                     </ol>
                 </div>
             </div>
@@ -36,24 +36,24 @@
                 <div class="col-sm-12">
                     <div class="card card-outline card-teal">
                         <div class="card-body">
-                            <h5 class="text-center mt-4 mb-3"><b>New Pet Info Form</b></h5>
+                            <h5 class="text-center mt-4 mb-3"><b>Edit Pet Info Form</b></h5>
 
                             <div class="row justify-content-center">
                                 <div class="col-sm-10">
-                                    <form method="POST" action="{{ route('pets.store') }}">
+                                    <form method="POST" action="{{ route('pets.update', $pet->id) }}">
                                         {{ csrf_field() }}
                                         @include('layouts.callouts.error')
                                         <div class="form-group row">
                                             <div class="col-md-2">
                                                 <label for="id">ID No.</label>
                                                 <input type="text" class="form-control bg-white" id="id"
-                                                    name="id" value="{{ $petID }}" readonly>
+                                                    name="id" value="{{ $pet->id }}" readonly>
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="name">Name</label>
                                                 <input type="text"
                                                     class="form-control @error('name') is-invalid @enderror" id="name"
-                                                    name="name" value="{{ old('name') }}">
+                                                    name="name" value="{{ $pet->name }}">
                                                 @error('name')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -65,9 +65,11 @@
                                                 <span class="float-right">
                                                     <div
                                                         class="custom-control custom-switch custom-switch-off-default custom-switch-on-teal">
-                                                        <input type='hidden' value='0' name='is_active'>
+                                                        <input type='hidden' value='0' name='is_active'
+                                                            {{ $pet->is_active == 0 ? 'checked' : '' }}>
                                                         <input type="checkbox" class="custom-control-input"
-                                                            id="customSwitch3" value="1" name="is_active" checked>
+                                                            id="customSwitch3" value="1" name="is_active"
+                                                            {{ $pet->is_active == 1 ? 'checked' : '' }}>
                                                         <label class="custom-control-label"
                                                             for="customSwitch3">Active</label>
                                                     </div>
@@ -77,10 +79,10 @@
                                                     data-dropdown-css-class="select2-teal" id="gender" name="gender"
                                                     style="width: 100%;">
                                                     <option disabled selected>Select here ...</option>
-                                                    <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>
+                                                    <option value="Male" {{ $pet->gender == 'Male' ? 'selected' : '' }}>
                                                         Male</option>
                                                     <option value="Female"
-                                                        {{ old('gender') == 'Female' ? 'selected' : '' }}>Female</option>
+                                                        {{ $pet->gender == 'Female' ? 'selected' : '' }}>Female</option>
                                                 </select>
                                                 @error('gender')
                                                     <span class="invalid-feedback" role="alert">
@@ -96,7 +98,7 @@
                                                     <input type="text" name="birthdate"
                                                         class="form-control datetimepicker-input @error('birthdate') is-invalid @enderror"
                                                         data-target="#birthdate" id="birthdate"
-                                                        value="{{ old('birthdate') }}">
+                                                        value="{{ $pet->birthdate }}">
                                                     <div class="input-group-append" data-target="#birthdate"
                                                         data-toggle="datetimepicker">
                                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -117,7 +119,7 @@
                                                     <option disabled selected>Select here ...</option>
                                                     @foreach ($breeds as $breed)
                                                         <option value="{{ $breed->id }}"
-                                                            {{ old('breed_id') == $breed->id ? 'selected' : '' }}>
+                                                            {{ $pet->breed_id == $breed->id ? 'selected' : '' }}>
                                                             {{ $breed->breed }}</option>
                                                     @endforeach
                                                 </select>
@@ -131,7 +133,7 @@
                                         <div class="form-group">
                                             <label for="notes">Notes</label>
                                             <textarea class="form-control @error('notes') is-invalid @enderror" rows="2" placeholder="Type here ..."
-                                                name="notes" id="notes" spellcheck="false">{{ old('notes') }}</textarea>
+                                                name="notes" id="notes" spellcheck="false">{{ $pet->notes }}</textarea>
                                             @error('notes')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -148,7 +150,7 @@
                                                     <option disabled selected>Select here ...</option>
                                                     @foreach ($owners as $owner)
                                                         <option value="{{ $owner->id }}"
-                                                            {{ old('owner_id') == $owner->id ? 'selected' : '' }}>
+                                                            {{ $pet->owner_id == $owner->id ? 'selected' : '' }}>
                                                             {{ $owner->name }}</option>
                                                     @endforeach
                                                 </select>
