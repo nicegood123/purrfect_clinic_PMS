@@ -12,10 +12,10 @@ class OwnerController extends Controller
     public function index()
     {
 
-        $owners = Owner::all();
         $ownerID  = Owner::setID();
+        $owners = Owner::all();
 
-        return view('owners.index', compact(['owners', 'ownerID']));
+        return view('owners.index', compact(['ownerID', 'owners']));
     }
 
     public function store(OwnerRequest $request)

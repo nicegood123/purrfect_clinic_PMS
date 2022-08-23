@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Breed;
 use App\Type;
+use DB;
 use Illuminate\Http\Request;
 
 class BreedController extends Controller
@@ -11,9 +12,10 @@ class BreedController extends Controller
     public function index()
     {
         $types = Type::all();
-        $breeds = Breed::select('breeds.*', 'types.*')
+        $breeds = Breed::select('breeds.*', 'types.type')
             ->join('types', 'types.id', 'breeds.type_id')
             ->get();
+
 
         return view('breeds.index', compact(['types', 'breeds']));
     }
@@ -23,7 +25,7 @@ class BreedController extends Controller
         $validated = $request->validate([
             'breed' => 'required|unique:breeds',
             'description' => 'required',
-            'type_id' => 'required|unique:breeds',
+            'type_id' => 'required',
         ]);
 
         Breed::firstOrCreate($validated);

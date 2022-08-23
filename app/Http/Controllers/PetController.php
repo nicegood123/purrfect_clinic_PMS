@@ -6,27 +6,22 @@ use App\Breed;
 use App\Http\Requests\PetRequest;
 use App\Owner;
 use App\Pet;
-use App\Type;
-use Illuminate\Http\Request;
 
 class PetController extends Controller
 {
     public function index()
     {
-
-        $pets = Pet::select('pets.*', 'breeds.*', 'types.*', 'owners.name  as owner_name')
+        $pets = Pet::select('pets.*', 'breeds.breed', 'types.type', 'owners.name  as owner_name')
             ->join('breeds', 'breeds.id', 'pets.breed_id')
             ->join('types', 'types.id', 'breeds.type_id')
             ->join('owners', 'owners.id', 'pets.owner_id')
             ->get();
-
 
         return view('pets.index', compact(['pets']));
     }
 
     public function create()
     {
-
         $petID  = Pet::setID();
         $breeds = Breed::all();
         $owners = Owner::all();
@@ -36,7 +31,6 @@ class PetController extends Controller
 
     public function store(PetRequest $request)
     {
-
         $data = [
             'name' => $request->name,
             'gender' => $request->gender,
@@ -56,12 +50,10 @@ class PetController extends Controller
         Pet::firstOrCreate($request->validated());
         session()->flash('success', 'New pet has been added.');
         return back();
-
     }
 
     public function edit($id)
     {
-
         $pet = Pet::findOrFail($id);
         $breeds = Breed::all();
         $owners = Owner::all();
@@ -71,14 +63,28 @@ class PetController extends Controller
 
     public function update(PetRequest $request, $id)
     {
+        $pet = Pet::find($id);
+        $owner = Owner::find($pet->owner_id);
 
-        $owner = Pet::find($id);
-        $owner->update($request->validated());
+        $data = [
+            'name' => $request->name,
+            'owner_id' => $owner->id,
+        ];
 
-        if ($owner->getChanges()) {
-            session()->flash('success', 'Pet owner info has been updated.');
+        $isFound = Pet::where($data)->exists();
+
+        if ($isFound) {
+            session()->flash('error', 'Pet name already for owner' . $owner->name . '. The record  already exists in the database.');
             return back();
         }
+
+
+        // $pet->update($request->validated());
+
+        // if ($pet->getChanges()) {
+        //     session()->flash('success', 'Pet owner info has been updated.');
+        //     return back();
+        // }
 
         session()->flash('success', 'Nothing has changed.');
         return back();

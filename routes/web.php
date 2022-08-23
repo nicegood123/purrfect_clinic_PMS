@@ -2,18 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-
 // Main Route
 Route::get('/', 'MainController@index');
 
@@ -27,7 +15,6 @@ Route::group(['prefix' => 'pets'], function () {
     Route::get('{id}/delete', 'PetController@delete')->name('pets.delete');
 });
 
-
 // Owners Routes
 Route::group(['prefix' => 'owners'], function () {
     Route::get('/', 'OwnerController@index')->name('owners.index');
@@ -37,18 +24,18 @@ Route::group(['prefix' => 'owners'], function () {
     Route::get('{id}/delete', 'OwnerController@delete')->name('owners.delete');
 });
 
-// Types Routes
-Route::group(['prefix' => 'types'], function () {
-    Route::get('/', 'TypeController@index')->name('types.index');
-    Route::post('store', 'TypeController@store')->name('types.store');
-    Route::post('{id}/update', 'TypeController@update')->name('types.update');
-    Route::get('{id}/delete', 'TypeController@delete')->name('types.delete');
-});
-
 // Breed Routes
 Route::group(['prefix' => 'breeds'], function () {
     Route::get('/', 'BreedController@index')->name('breeds.index');
     Route::post('store', 'BreedController@store')->name('breeds.store');
     Route::post('{id}/update', 'BreedController@update')->name('breeds.update');
     Route::get('{id}/delete', 'BreedController@delete')->name('breeds.delete');
+});
+
+// Types Routes
+Route::group(['prefix' => 'types'], function () {
+    Route::get('/', 'TypeController@index')->name('types.index');
+    Route::post('store', 'TypeController@store')->name('types.store');
+    Route::post('{id}/update', 'TypeController@update')->name('types.update');
+    Route::get('{id}/delete', 'TypeController@delete')->name('types.delete');
 });
