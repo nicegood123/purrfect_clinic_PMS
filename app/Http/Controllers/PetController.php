@@ -71,20 +71,22 @@ class PetController extends Controller
             'owner_id' => $owner->id,
         ];
 
-        $isFound = Pet::where($data)->exists();
+        $isFound = Pet::where($data)
+            ->where('id', '!=', $pet->id)
+            ->exists();
 
         if ($isFound) {
-            session()->flash('error', 'Pet name already for owner' . $owner->name . '. The record  already exists in the database.');
+            session()->flash('error', 'Pet name already for owner ' . $owner->name
+                . '. The record  already exists in the database.');
             return back();
         }
 
+        $pet->update($request->validated());
 
-        // $pet->update($request->validated());
-
-        // if ($pet->getChanges()) {
-        //     session()->flash('success', 'Pet owner info has been updated.');
-        //     return back();
-        // }
+        if ($pet->getChanges()) {
+            session()->flash('success', 'Pet record has been updated.');
+            return back();
+        }
 
         session()->flash('success', 'Nothing has changed.');
         return back();
