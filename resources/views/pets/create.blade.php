@@ -148,7 +148,7 @@
                                                     <option disabled selected>Select here ...</option>
                                                     @foreach ($owners as $owner)
                                                         <option value="{{ $owner->id }}"
-                                                            {{ old('owner_id' == $owner->id ? 'selected' : '') }}>
+                                                            {{ old('owner_id') == $owner->id ? 'selected' : '' }}>
                                                             {{ $owner->name }}</option>
                                                     @endforeach
                                                 </select>
@@ -180,12 +180,10 @@
 @section('scripts')
     <script>
         $(function() {
-
             // Birthdate Date Picker
             $('#birthdate').datetimepicker({
-                format: 'L'
+                format: 'YYYY-MM-DD'
             });
-
 
         })
     </script>

@@ -27,7 +27,7 @@ class PetRequest extends FormRequest
 
             'name' => 'required',
             'gender' => 'required',
-            'birthdate' => 'required',
+            'birthdate' => 'required|date_format:Y-m-d',
             'notes' => 'required',
             'breed_id' => 'required',
             'owner_id' => 'required',

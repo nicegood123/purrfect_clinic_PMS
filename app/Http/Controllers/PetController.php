@@ -36,11 +36,28 @@ class PetController extends Controller
 
     public function store(PetRequest $request)
     {
-        // Pet::firstOrCreate($request->validated());
-        // session()->flash('success', 'New pet has been added.');
-        // return back();
 
-        dd($request->all());
+        $data = [
+            'name' => $request->name,
+            'gender' => $request->gender,
+            'notes' => $request->notes,
+            'breed_id' => $request->breed_id,
+            'owner_id' => $request->owner_id,
+            'is_active' => $request->is_active,
+        ];
+
+        $isFound = Pet::where($data)->exists();
+
+        if ($isFound) {
+            session()->flash('error', 'Pet info already exists in the database.');
+            return back();
+        }
+
+        Pet::firstOrCreate($request->validated());
+        session()->flash('success', 'New pet has been added.');
+        return back();
+
+        // dd($request->all());
     }
 
     public function delete($id)
