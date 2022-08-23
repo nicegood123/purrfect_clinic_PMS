@@ -50,10 +50,10 @@
                                             <td>{{ $pet->gender }}</td>
                                             <td>{{ $pet->owner_name }}</td>
                                             <td class="text-center">
-                                                {{-- <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                                     data-target="#info-{{ $pet->id }}">
                                                     <span class="fas fa-info-circle"></span>
-                                                </button> --}}
+                                                </button>
                                                 <a class="btn bg-orange btn-sm" href="{{ route('pets.edit', $pet->id) }}">
                                                     <span class="fas fa-edit text-white"></span>
                                                 </a>
@@ -62,7 +62,7 @@
                                                     <span class="fas fa-trash"></span>
                                                 </button>
                                             </td>
-                                            {{-- @include('owners.modals.info') --}}
+                                            @include('pets.modals.info')
                                             @include('pets.modals.delete')
                                         </tr>
                                     @endforeach
@@ -74,10 +74,6 @@
             </div>
         </div>
     </section>
-@endsection
-
-@section('modals')
-    {{-- @include('owners.modals.create') --}}
 @endsection
 
 @section('scripts')
