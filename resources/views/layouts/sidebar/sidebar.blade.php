@@ -40,7 +40,7 @@
                   <li class="nav-item">
                     <a href="{{ route('breeds.index') }}"
                         class="nav-link {{ request()->is('breeds*') ? 'active' : '' }}">
-                        <i class="fas fa-th-large nav-icon"></i>
+                        <i class="fas fa-paw nav-icon"></i>
                         <p>Breeds</p>
                     </a>
                 </li>
