@@ -34,6 +34,9 @@
                     </a>
                 </div>
                 <div class="col-sm-12">
+                    @include('layouts.alerts.error')
+                </div>
+                <div class="col-sm-12">
                     <div class="card card-outline card-teal">
                         <div class="card-body">
                             <h5 class="text-center mt-4 mb-3"><b>New Pet Info Form</b></h5>

@@ -45,8 +45,7 @@ class PetRequest extends FormRequest
     public function withValidator($validator)
     {
         if ($validator->fails()) {
-            session()->flash('error', 'Please check and complete all required fields.');
-            session()->flash('errorMessage', 'All fields are required. Please ensure all fields are completed.');
+            session()->flash('alert-error', 'All fields are required. Please ensure all fields are completed.');
         }
     }
 }
