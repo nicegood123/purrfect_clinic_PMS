@@ -10,9 +10,9 @@ Route::group(['prefix' => 'pets'], function () {
     Route::get('/', 'PetController@index')->name('pets.index');
     Route::get('create', 'PetController@create')->name('pets.create');
     Route::post('store', 'PetController@store')->name('pets.store');
-    Route::get('{id}/edit', 'PetController@edit')->name('pets.edit');
-    Route::post('{id}/update', 'PetController@update')->name('pets.update');
-    Route::get('{id}/delete', 'PetController@delete')->name('pets.delete');
+    Route::get('edit/{id}', 'PetController@edit')->name('pets.edit');
+    Route::post('update/{id}', 'PetController@update')->name('pets.update');
+    Route::get('delete/{id}', 'PetController@delete')->name('pets.delete');
 });
 
 // Owners Routes
@@ -29,14 +29,14 @@ Route::group(['prefix' => 'owners'], function () {
 Route::group(['prefix' => 'breeds'], function () {
     Route::get('/', 'BreedController@index')->name('breeds.index');
     Route::post('store', 'BreedController@store')->name('breeds.store');
-    Route::post('{id}/update', 'BreedController@update')->name('breeds.update');
-    Route::get('{id}/delete', 'BreedController@delete')->name('breeds.delete');
+    Route::post('update/{id}', 'BreedController@update')->name('breeds.update');
+    Route::get('delete/{id}', 'BreedController@delete')->name('breeds.delete');
 });
 
 // Types Routes
 Route::group(['prefix' => 'types'], function () {
     Route::get('/', 'TypeController@index')->name('types.index');
     Route::post('store', 'TypeController@store')->name('types.store');
-    Route::post('{id}/update', 'TypeController@update')->name('types.update');
-    Route::get('{id}/delete', 'TypeController@delete')->name('types.delete');
+    Route::post('update/{id}', 'TypeController@update')->name('types.update');
+    Route::get('delete/{id}', 'TypeController@delete')->name('types.delete');
 });

@@ -34,7 +34,6 @@ class PetController extends Controller
         $data = [
             'name' => $request->name,
             'gender' => $request->gender,
-            'notes' => $request->notes,
             'breed_id' => $request->breed_id,
             'owner_id' => $request->owner_id,
             'is_active' => $request->is_active,
@@ -71,8 +70,9 @@ class PetController extends Controller
             'owner_id' => $owner->id,
         ];
 
-        $isFound = Pet::where($data)
-            ->where('id', '!=', $pet->id)
+        $isFound = Pet::where('name', $request->name)
+            ->where('owner_id', $request->owner_id)
+            ->where('id',  '!=', $pet->id)
             ->exists();
 
         if ($isFound) {

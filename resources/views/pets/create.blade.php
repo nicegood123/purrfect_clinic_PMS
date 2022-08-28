@@ -123,7 +123,9 @@
                                                             {{ old('breed_id') == $breed->id ? 'selected' : '' }}>
                                                             {{ $breed->breed }}</option>
                                                     @endforeach
+
                                                 </select>
+
                                                 @error('breed_id')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
