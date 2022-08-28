@@ -18,10 +18,11 @@ Route::group(['prefix' => 'pets'], function () {
 // Owners Routes
 Route::group(['prefix' => 'owners'], function () {
     Route::get('/', 'OwnerController@index')->name('owners.index');
+    Route::get('create', 'OwnerController@create')->name('owners.create');
     Route::post('store', 'OwnerController@store')->name('owners.store');
-    Route::get('{id}/edit', 'OwnerController@edit')->name('owners.edit');
-    Route::post('{id}/update', 'OwnerController@update')->name('owners.update');
-    Route::get('{id}/delete', 'OwnerController@delete')->name('owners.delete');
+    Route::get('edit/{id}', 'OwnerController@edit')->name('owners.edit');
+    Route::post('update/{id}', 'OwnerController@update')->name('owners.update');
+    Route::get('delete/{id}', 'OwnerController@delete')->name('owners.delete');
 });
 
 // Breed Routes

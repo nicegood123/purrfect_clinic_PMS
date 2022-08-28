@@ -18,6 +18,12 @@ class OwnerController extends Controller
         return view('owners.index', compact(['ownerID', 'owners']));
     }
 
+    public function create()
+    {
+        $ownerID  = Owner::setID();
+        return view('owners.create', compact('ownerID'));
+    }
+
     public function store(OwnerRequest $request)
     {
         Owner::firstOrCreate($request->validated());

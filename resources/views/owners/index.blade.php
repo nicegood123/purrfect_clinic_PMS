@@ -20,7 +20,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 mb-3">
-                    <a class="btn btn-dark float-right" data-toggle="modal" data-target="#add">
+                    <a href="{{ route('owners.create') }}" class="btn btn-dark float-right">
                         <span class="fa fa-plus"></span> Create New
                     </a>
                 </div>
@@ -70,10 +70,6 @@
             </div>
         </div>
     </section>
-@endsection
-
-@section('modals')
-    @include('owners.modals.create')
 @endsection
 
 @section('scripts')
