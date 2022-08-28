@@ -19,6 +19,13 @@ class Pet extends Model
         'is_active',
     ];
 
+    // protected $casts = [
+    //     'created_at' => 'datetime:d-m-Y',
+    // ];
+
+    protected $dateFormat = 'Y-m-d';
+
+
     public static function setID()
     {
         $query  = DB::select("SHOW TABLE STATUS LIKE 'pets'");

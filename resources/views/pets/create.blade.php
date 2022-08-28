@@ -185,7 +185,7 @@
         $(function() {
             // Birthdate Date Picker
             $('#birthdate').datetimepicker({
-                format: 'YYYY-MM-DD'
+                format: 'MM-DD-YYYY'
             });
 
         })

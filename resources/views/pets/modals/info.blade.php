@@ -31,7 +31,7 @@
                     <div class="col-md-6">
                         <label for="birthdate">Birthdate</label>
                         <input type="text" class="form-control" id="birthdate"
-                            value="{{ Carbon\Carbon::parse($pet->birthdate)->format('Y-m-d') }}" readonly>
+                            value="{{ $pet->birthdate }}" readonly>
                     </div>
                 </div>
                 <div class="form-group row">
