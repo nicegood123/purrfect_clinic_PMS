@@ -48,7 +48,7 @@ class OwnerRequest extends FormRequest
     public function withValidator($validator)
     {
         if ($validator->fails()) {
-            session()->flash('error', 'Please complete all required fields.');
+            session()->flash('error', 'Owner not  saved. Please check and complete all required fields.');
             session()->flash('errorMessage', 'All fields are required. Please ensure all fields are completed.');
         }
     }
